@@ -1,59 +1,59 @@
 package ru.vsu.csf.pait.enlightened.QuestEngine.Nodes;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.Scanner;
 
 @XmlRootElement(name = "ifNode")
-@XmlType(propOrder = {"yesBranch", "noBranch"})
+@XmlType(propOrder = {"yesBranchID", "noBranchID"})
 public class IfNode extends AbsNode {
 
-    private AbsNode yesBranch;
-    private AbsNode noBranch;
+    private Integer yesBranchID;
+    private Integer noBranchID;
 
-
-    public AbsNode getNoBranch() {
-        return noBranch;
+    public Integer getYesBranchID() {
+        return yesBranchID;
     }
 
-    @XmlElement(name = "no", nillable = true)
-    public void setNoBranch(AbsNode noBranch) {
-        this.noBranch = noBranch;
+    @XmlElement(name = "yesID")
+    public void setYesBranchID(Integer yesBranchID) {
+        this.yesBranchID = yesBranchID;
     }
 
-    public AbsNode getYesBranch() {
-        return yesBranch;
+    public Integer getNoBranchID() {
+        return noBranchID;
     }
 
-    @XmlElement(name = "yes", nillable = true)
-    public void setYesBranch(AbsNode yesBranch) {
-        this.yesBranch = yesBranch;
+    @XmlElement(name = "noID")
+    public void setNoBranchID(Integer noBranchID) {
+        this.noBranchID = noBranchID;
     }
+
+
+
+    public IfNode() {
+        this.setId(getNewId());
+    }
+
+    public IfNode(String desc) {
+        this.setDescription(desc);
+        this.setId(getNewId());
+    }
+
 
     @Override
-    public void execute() {
+    public Integer execute() {
         super.execute();
 
         Scanner sc = new Scanner(System.in);
         String s = sc.next().toLowerCase();
         if (s.equals("yes") || s.equals("да")){
-            this.getYesBranch().execute();
+            return this.getYesBranchID();
         }
         else if (s.equals("no") || s.equals("нет")) {
-            this.getNoBranch().execute();
+            return this.getNoBranchID();
+
         }
         else
             throw new IllegalArgumentException("Ответ должен быть \"да/нет\" или \"yes/no\"!");
-    }
-
-
-    public void addYesNode(AbsNode node) {
-        this.yesBranch = node;
-    }
-
-    public void addNoBranch(AbsNode node) {
-        this.noBranch = node;
     }
 }

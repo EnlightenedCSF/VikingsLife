@@ -1,6 +1,5 @@
 package ru.vsu.csf.pait.enlightened.QuestEngine;
 
-import com.sun.jmx.remote.internal.Unmarshal;
 import ru.vsu.csf.pait.enlightened.QuestEngine.Nodes.AbsNode;
 import ru.vsu.csf.pait.enlightened.QuestEngine.Nodes.EndingNode;
 import ru.vsu.csf.pait.enlightened.QuestEngine.Nodes.IfNode;
@@ -11,66 +10,72 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.util.HashMap;
 
 
 public class QuestEngine {
 
-    private AbsNode start;
+    private Quest quest;
 
-    public AbsNode getStart() {
-        return start;
+    public Quest getQuest() {
+        return quest;
     }
 
-    public void setStart(AbsNode start) {
-        this.start = start;
+    public void setQuest(Quest quest) {
+        this.quest = quest;
     }
 
+    public QuestEngine() {
+        quest = new Quest();
+    }
 
     public void startAdventure(){
-        this.getStart().execute();
+        quest.start();
     }
 
-
-    public void init() {
+    /*public void init() {
         Node node = new Node("Вы просыпаетесь на костях поверженных врагов.");
+        quest.addNode(node);
 
-        IfNode node1 = new IfNode();
-        node1.setDescription("Поискать секиру?");
+        quest.setStartID(node.getId());
+
+        IfNode node1 = new IfNode("Поискать секиру?");
+        node.addNextNode(node1.getId());
+        quest.addNode(node1);
 
         Node yesNode = new Node("Вы вынимаете секиру из близлежащего бездыханного тела.");
-        Node nopeNode = new Node("Дальнейшее.");
-        yesNode.setNext(nopeNode);
+        EndingNode nopeNode = new EndingNode("Дальнейшее.");
 
-        node1.setYesBranch(yesNode);
-        node1.setNoBranch(nopeNode);
+        node1.setYesBranchID(yesNode.getId());
+        node1.setNoBranchID(nopeNode.getId());
+        yesNode.addNextNode(nopeNode.getId());
+        quest.addNode(yesNode);
+        quest.addNode(nopeNode);
+    }*/
 
-        node.setNext(node1);
 
-        this.start = node;
-    }
-
-    public void writeQuestToXML() {
+    /*public void writeQuestToXML() {
         try {
             File file = new File("out.xml");
-            JAXBContext jaxbContext = JAXBContext.newInstance(AbsNode.class, Node.class, EndingNode.class, IfNode.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Quest.class); //, AbsNode.class, Node.class, IfNode.class, EndingNode.class);
 
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            marshaller.marshal(this.start, file);
+            marshaller.marshal(quest, file);
         }
         catch (JAXBException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void loadQuestFromXML(String path) {
         try {
             File file = new File(path);
-            JAXBContext jaxbContext = JAXBContext.newInstance(AbsNode.class, Node.class, EndingNode.class, IfNode.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Quest.class);
 
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            start = (AbsNode) unmarshaller.unmarshal(file);
+            quest = (Quest) unmarshaller.unmarshal(file);
         }
         catch (JAXBException e) {
             e.printStackTrace();

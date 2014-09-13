@@ -6,17 +6,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class EndingNode extends AbsNode {
 
     public EndingNode() {
-
+        this.setId(getNewId());
     }
 
     public EndingNode(String description) {
         this.setDescription(description);
+        this.setId(getNewId());
     }
 
     @Override
-    public void execute() {
+    public Integer execute() {
         super.execute();
 
         System.out.println("Жизнь великолепного викинга закончилась.");
+        return -1;
     }
 }

@@ -1,16 +1,115 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node>
-    <desc>Вы просыпаетесь на костях поверженных врагов.</desc>
-    <ifNode>
-        <desc>Поискать секиру?</desc>
-        <yes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="node">
-            <desc>Вы вынимаете секиру из близлежащего бездыханного тела.</desc>
-            <node>
-                <desc>Дальнейшее.</desc>
-            </node>
-        </yes>
-        <no xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="node">
-            <desc>Дальнейшее.</desc>
-        </no>
-    </ifNode>
-</node>
+<quest>
+    <nodes>
+        <node>
+            <desc>Ты просыпаешься на костях поверженных врагов.</desc>
+            <id>0</id>
+            <nextId>1</nextId>
+        </node>
+        <ifNode>
+            <desc>Поискать секиру?</desc>
+            <id>1</id>
+            <yesID>2</yesID>
+            <noID>3</noID>
+        </ifNode>
+        <node>
+            <desc>Ты вынимаешь секиру из близлежащего бездыханного тела.</desc>
+            <id>2</id>
+            <nextId>3</nextId>
+        </node>
+        <ifNode>
+            <desc>Чувствуешь голод?</desc>
+            <id>3</id>
+			<yesID>5</yesID>
+            <noID>4</noID>
+        </ifNode>
+		<node>
+			<desc>Прошло 15 минут.</desc>
+			<id>4</id>
+			<nextId>3</nextId>
+		</node>
+		<node>
+			<desc>Ты собираешь боевой отряд, приказываешь им грузиться на ладьи.</desc>
+			<id>5</id>
+			<nextId>6</nextId>
+		</node>
+		<ifNode>
+            <desc>Плыть в Англию?</desc>
+			<id>6</id>
+			<yesID>8</yesID>
+            <noID>7</noID>
+        </ifNode>
+		<node>
+			<desc>Извини, но можно только в Англию.</desc>
+			<id>7</id>
+			<nextId>6</nextId>
+		</node>
+		<node>
+			<desc>По пути ты решаешь откупорить пару бочонков эля. А потом пьешь и горланишь воодушевляющие песни.</desc>
+			<id>8</id>
+			<nextId>9</nextId>
+		</node>
+		<ifNode>
+            <desc>Выпить еще эля?</desc>
+            <id>9</id>
+			<yesID>10</yesID>
+            <noID>11</noID>
+        </ifNode>
+		<node>
+			<desc>Напившись в полные нули, ты выруливаешь корабль в неверном направлении.</desc>
+			<id>10</id>
+			<nextId>12</nextId>
+		</node>
+		<endNode>
+			<desc>А еще проплыв несколько часов, ты разбиваешься о рифы на мелководье в Гренландии.</desc>
+			<id>12</id>
+		</endNode>
+		<node>
+			<desc>Ты высаживаешься на побережье Англии.</desc>
+			<id>11</id>
+			<nextId>13</nextId>
+		</node>
+		<node>
+			<desc>Ты занимаешься типичной рутинной работой викинга: убиваешь, грабишь, рушишь, поджигаешь и связываешь женщин, чтобы увезти их с собой.
+			</desc>
+			<id>13</id>
+			<nextId>14</nextId>
+		</node>
+		<ifNode>
+            <desc>Еще?</desc>
+            <id>14</id>
+			<yesID>13</yesID>
+            <noID>15</noID>
+        </ifNode>
+		<node>
+			<desc>Вместе со своей командой вы складываете награбленное в трюм корабля.
+			</desc>
+			<id>15</id>
+			<nextId>16</nextId>
+		</node>
+		<node>
+			<desc>Едва вернувшись домой, ты приказываешь устроить пир в честь очередного удачного похода. Ешь, пьешь и горланишь душевные песни.
+			</desc>
+			<id>16</id>
+			<nextId>17</nextId>
+		</node>
+		<node>
+			<desc>А потом ты просыпаешься и осознаешь, что ты - менеджер среднего звена.
+			</desc>
+			<id>17</id>
+			<nextId>18</nextId>
+		</node>
+		<ifNode>
+            <desc>Придавить еще часок?</desc>
+            <id>18</id>
+			<yesID>0</yesID>
+            <noID>19</noID>
+        </ifNode>
+		<endNode>
+			<desc>Идешь тогда работать, и жизнь снова становится серой и унылой.
+			</desc>
+			<id>19</id>
+		</endNode>
+    </nodes>
+    <startID>0</startID>
+</quest>

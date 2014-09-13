@@ -7,8 +7,9 @@ public class Main {
     public static void main(String[] args) {
 
         QuestEngine engine = new QuestEngine();
-        engine.init();
-        engine.writeQuestToXML();
+        //engine.init();
+        //engine.startAdventure();
+        //engine.writeQuestToXML();
 
         engine.loadQuestFromXML("out.xml");
         engine.startAdventure();
