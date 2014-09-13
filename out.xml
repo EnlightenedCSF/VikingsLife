@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node>
+    <desc>Вы просыпаетесь на костях поверженных врагов.</desc>
+    <ifNode>
+        <desc>Поискать секиру?</desc>
+        <yes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="node">
+            <desc>Вы вынимаете секиру из близлежащего бездыханного тела.</desc>
+            <node>
+                <desc>Дальнейшее.</desc>
+            </node>
+        </yes>
+        <no xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="node">
+            <desc>Дальнейшее.</desc>
+        </no>
+    </ifNode>
+</node>
